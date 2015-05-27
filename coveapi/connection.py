@@ -1,15 +1,22 @@
 """Module: `coveapi.connection`
 Connection classes for accessing COVE API.
 """
-import urllib
-import urllib2
+try:
+    from urllib.parse import urlencode
+    from urllib.request import Request, urlopen
+except ImportError:
+    from urllib import urlencode, urlopen
+    from urllib2 import Request
+    
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
-import simplejson as json
-
-from coveapi import COVEAPI_HOST, COVEAPI_ENDPOINT_CATEGORIES, \
-    COVEAPI_ENDPOINT_GROUPS, COVEAPI_ENDPOINT_PROGRAMS, \
-    COVEAPI_ENDPOINT_VIDEOS, COVEAPI_ENDPOINT_GRAVEYARD
 from coveapi.auth import PBSAuthorization
+from coveapi import (COVEAPI_HOST, COVEAPI_ENDPOINT_CATEGORIES,
+    COVEAPI_ENDPOINT_GROUPS, COVEAPI_ENDPOINT_PROGRAMS,
+    COVEAPI_ENDPOINT_VIDEOS, COVEAPI_ENDPOINT_GRAVEYARD)
 
 
 class COVEAPIConnection(object):
@@ -180,7 +187,7 @@ class Requestor(object):
 
         query = endpoint
         if params:
-            params = params.items()
+            params = list(params.items())
             params.sort()
             
             # Note: We're using urllib.urlencode() below which escapes spaces as
@@ -189,13 +196,13 @@ class Requestor(object):
             # this is a bug in the COVE API authentication scheme... but we have
             # to live with this in the client. We'll update this to use "%20"
             # once the COVE API supports it properly.
-            query = '%s?%s' % (query, urllib.urlencode(params))
+            query = '%s?%s' % (query, urlencode(params))
         
-        request = urllib2.Request(query)
+        request = Request(query)
         
         auth = PBSAuthorization(self.api_app_id, self.api_app_secret)
         signed_request = auth.sign_request(request)
+
+        response = urlopen(signed_request)
         
-        response = urllib2.urlopen(signed_request)
-        
-        return json.loads(response.read())
+        return json.loads(response.read().decode('utf-8'))
