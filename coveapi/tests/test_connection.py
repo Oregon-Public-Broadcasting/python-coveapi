@@ -15,10 +15,11 @@ class TestCOVEAPIConnection(unittest.TestCase):
         response = con.programs.filter()
         self.assertIn('results', response)
 
-    def test_producer_list(self):
-        con = COVEAPIConnection(config.COVEAPI_ID_TEST, config.COVEAPI_SECRET_TEST, config.COVEAPI_HOST_TEST)
-        response = con.producers.get('/cove/v1/producers/53/')
-        self.assertIn('results', response)
+    # COVE doesn't have a 'producers' endpont, but I hope they do someday (hint)
+    # def test_producer_list(self):
+    #     con = COVEAPIConnection(config.COVEAPI_ID_TEST, config.COVEAPI_SECRET_TEST, config.COVEAPI_HOST_TEST)
+    #     response = con.producers.get('/cove/v1/producers/53/')
+    #     self.assertIn('results', response)
 
 if __name__ == '__main__':
     unittest.main()
