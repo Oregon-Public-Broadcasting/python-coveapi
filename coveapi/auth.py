@@ -25,7 +25,6 @@ class PBSAuthorization(object):
         self.api_app_id = api_app_id
         self.api_app_secret = api_app_secret
     
-    
     def sign_request(self, request):
         """Sign request per PBSAuth specifications.
             

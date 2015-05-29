@@ -1,0 +1,11 @@
+# To run the tests, copy this to a new file named config.py (in the tests directory),
+# and add real values for TEST HOSTNAME, COVEAPI_ID, and COVEAPI_SECRET
+#
+# WARNING: None of the tests write to the API.  If you add tests to this project, keep in mind
+# that writing tests for APIs can be dangerous and should be written with care.
+#
+
+COVEAPI_HOST_TEST = 'http://<TEST HOSTNAME>'
+
+COVEAPI_ID_TEST = 'YOUR ID FOR THE TEST API'
+COVEAPI_SECRET_TEST = 'YOUR SECRET FOR THE TEST API'
