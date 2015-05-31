@@ -1,9 +1,10 @@
 from distutils.core import setup
+from setuptools import find_packages
 
 setup(
     name = 'python-coveapi',
     version = '0.2dev',
-    packages = ['coveapi', ],
+    packages = find_packages('.', exclude=['tests']),
     author = 'Drew Engelson',
     author_email = 'dsengelson@pbs.org',
     url = 'http://github.com/pbs/python-coveapi',

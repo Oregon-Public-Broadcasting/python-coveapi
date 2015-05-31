@@ -1,7 +1,7 @@
 import unittest
 
-from connection import (COVEAPI_HOST, COVEAPI_ROOT, COVEAPI_VERSION, COVEAPI_ENDPOINT_PROGRAMS)
-from utils import parsers
+from coveapi.connection import (COVEAPI_HOST, COVEAPI_ROOT, COVEAPI_VERSION, COVEAPI_ENDPOINT_PROGRAMS)
+from coveapi.utils import parsers
 from tests import config
 
 class TestUtilsParsers(unittest.TestCase):

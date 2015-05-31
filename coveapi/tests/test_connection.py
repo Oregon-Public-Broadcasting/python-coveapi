@@ -1,6 +1,6 @@
 import unittest
 
-from connection import *
+from coveapi.connection import *
 from tests import config
 
 class TestCOVEAPIConnection(unittest.TestCase):

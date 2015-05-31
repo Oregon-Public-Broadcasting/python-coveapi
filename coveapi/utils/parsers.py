@@ -5,7 +5,7 @@ try:
 except ImportError:
 	from urlparse import urlparse
 
-from connection import (COVEAPI_HOST, COVEAPI_ROOT, COVEAPI_VERSION)
+from coveapi.connection import (COVEAPI_HOST, COVEAPI_ROOT, COVEAPI_VERSION)
 
 def parse_resource_uri(resource_uri):
 	parse_result = urlparse(resource_uri)
