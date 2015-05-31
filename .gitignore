@@ -3,3 +3,5 @@
 build
 MANIFEST
 coveapi/tests/config.py
+python_coveapi.egg-info/
+dist/
